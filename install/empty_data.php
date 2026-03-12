@@ -2484,6 +2484,48 @@ $empty_data_builder = new class {
                 'name' => 'WebP',
                 'ext' => 'webp',
                 'icon' => 'webp-dist.png',
+            ], [
+                'id' => '74',
+                'name' => 'MP4 Video',
+                'ext' => 'mp4',
+                'icon' => '',
+                'mime' => 'video/mp4',
+            ], [
+                'id' => '75',
+                'name' => 'WebM Video',
+                'ext' => 'webm',
+                'icon' => '',
+                'mime' => 'video/webm',
+            ], [
+                'id' => '76',
+                'name' => 'Outlook Message',
+                'ext' => 'msg',
+                'icon' => '',
+                'mime' => 'application/vnd.ms-outlook',
+            ], [
+                'id' => '77',
+                'name' => 'Email',
+                'ext' => 'eml',
+                'icon' => '',
+                'mime' => 'message/rfc822',
+            ], [
+                'id' => '78',
+                'name' => 'RAR Archive',
+                'ext' => 'rar',
+                'icon' => '',
+                'mime' => 'application/x-rar-compressed',
+            ], [
+                'id' => '79',
+                'name' => '7-Zip Archive',
+                'ext' => '7z',
+                'icon' => '',
+                'mime' => 'application/x-7z-compressed',
+            ], [
+                'id' => '80',
+                'name' => 'HEIC Image',
+                'ext' => 'heic',
+                'icon' => '',
+                'mime' => 'image/heic',
             ],
         ];
 
