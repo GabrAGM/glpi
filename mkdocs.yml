@@ -1,0 +1,7 @@
+site_name: GLPI
+nav:
+  - Overview: index.md
+  - API: api.md
+  - Operations: operations.md
+plugins:
+  - techdocs-core

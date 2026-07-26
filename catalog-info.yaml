@@ -1,0 +1,79 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: glpi
+  title: GLPI Helpdesk & ITSM
+  description: >-
+    AGM's self-hosted GLPI stack: the ITSM/asset-management application
+    itself, the Single Sign-On plugin that lets staff log in with their AGM
+    Microsoft account, and the MCP server that exposes helpdesk tickets to
+    Claude Code.
+  tags:
+    - itsm
+    - helpdesk
+    - glpi
+    - internal-employee-facing
+  links:
+    - url: https://glpi.agmegypt.com
+      title: GLPI (live)
+      icon: dashboard
+    - url: https://github.com/AGM-One-Vision/glpi
+      title: glpi — the application
+      icon: github
+    - url: https://github.com/AGM-One-Vision/glpi-singlesignon
+      title: glpi-singlesignon — Azure AD login plugin
+      icon: github
+    - url: https://github.com/AGM-One-Vision/glpi-mcp-auth
+      title: glpi-mcp-auth — MCP server for Claude Code
+      icon: github
+    - url: https://github.com/glpi-project/glpi
+      title: Upstream GLPI project
+      icon: docs
+  annotations:
+    devhub.agm/visibility: internal
+    devhub.agm/origin: forked-oss
+    devhub.agm/upstream-repo: https://github.com/glpi-project/glpi
+spec:
+  owner: group:default/dto
+  domain: internal-employee-facing
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: glpi
+  title: GLPI
+  description: >-
+    AGM's fork of GLPI (Gestionnaire Libre de Parc Informatique) — a free
+    ITSM/asset-management platform: service desk (tickets, incidents,
+    problems, changes), IT asset inventory, software/license tracking, and
+    contract management. Self-hosted at glpi.agmegypt.com. Ships a built-in
+    REST API (apirest.php) used by glpi-mcp-auth; login is extended by the
+    glpi-singlesignon plugin.
+  tags:
+    - php
+    - vue
+    - twig
+    - itsm
+    - helpdesk
+    - glpi
+  links:
+    - url: https://glpi.agmegypt.com
+      title: GLPI (live)
+      icon: dashboard
+    - url: https://github.com/AGM-One-Vision/glpi/blob/11.0/bugfixes/apirest.md
+      title: REST API reference
+      icon: docs
+    - url: https://github.com/AGM-One-Vision/glpi/blob/11.0/bugfixes/INSTALL.md
+      title: Install guide
+      icon: docs
+  annotations:
+    github.com/project-slug: AGM-One-Vision/glpi
+    backstage.io/techdocs-ref: dir:.
+    devhub.agm/visibility: internal
+    devhub.agm/origin: forked-oss
+    devhub.agm/upstream-repo: https://github.com/glpi-project/glpi
+spec:
+  type: service
+  lifecycle: production
+  owner: group:default/dto
+  system: system:default/glpi
