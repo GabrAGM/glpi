@@ -18,14 +18,17 @@ if ! grep -q "TLS_REQCERT" /etc/ldap/ldap.conf 2>/dev/null; then
 fi
 
 # Cron job for GLPI scheduler (every 2 minutes)
-CRON_LINE="*/2 * * * * www-data /usr/bin/php /var/www/html/glpi/front/cron.php &>/dev/null"
-if ! grep -qF "glpi/front/cron.php" /etc/cron.d/glpi 2>/dev/null; then
-    echo "$CRON_LINE" > /etc/cron.d/glpi
-    chmod 644 /etc/cron.d/glpi
+# ENABLE_CRON=false lets this container's cron be disabled once an external
+# scheduler (e.g. an ECS scheduled task) runs front/cron.php instead, so it
+# no longer competes with Apache for CPU on the web container.
+if [ "${ENABLE_CRON:-true}" = "true" ]; then
+    CRON_LINE="*/2 * * * * www-data /usr/bin/php /var/www/html/glpi/front/cron.php &>/dev/null"
+    if ! grep -qF "glpi/front/cron.php" /etc/cron.d/glpi 2>/dev/null; then
+        echo "$CRON_LINE" > /etc/cron.d/glpi
+        chmod 644 /etc/cron.d/glpi
+    fi
+    service cron start
 fi
-
-# Start cron
-service cron start
 
 # Ensure proper permissions on runtime dirs
 chown -R www-data:www-data /var/www/html/glpi/files
