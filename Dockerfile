@@ -72,7 +72,7 @@ RUN apt-get update && \
     && apt-get update \
     && apt-get install -y \
         apache2 \
-        php8.3 libapache2-mod-php8.3 \
+        php8.3 libapache2-mod-php8.3 php8.3-opcache \
         php8.3-mysql php8.3-bz2 php8.3-zip php8.3-curl php8.3-gd \
         php8.3-mbstring php8.3-xml php8.3-ldap php8.3-imap \
         php8.3-intl php8.3-bcmath php8.3-redis \
@@ -83,6 +83,7 @@ WORKDIR /var/www/html/glpi
 
 COPY --from=builder  --chown=www-data:www-data /build .
 COPY --from=plugin-builder --chown=www-data:www-data /plugins/singlesignon ./plugins/singlesignon
+COPY docker/opcache.ini /etc/php/8.3/apache2/conf.d/99-opcache.ini
 
 RUN mkdir -p files/_log files/_sessions files/_uploads files/_tmp \
     && chown -R www-data:www-data /var/www/html/glpi
